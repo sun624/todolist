@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To Do List</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="jumbotron">
+            <h1 class="display-4">To Do List</h1>
+            <p class="lead">Put anything you want to do into this to do list and it will take care of you.</p>
+            <hr class="my-4">
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                 <form>
+                    <div class="form-group">
+                        <label for="event">Event</label>
+                        <input type="text" class="form-control" id="event" placeholder="Next thing you want to do">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Dueday">Due Date</label>
+                        <input type="datetime-local" class="form-control" id="Dueday">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select class="form-control" id="priority">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Note">Note</label>
+                        <textarea type="text" class="form-control" id="Note" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary submit_btn" value="" >Add to list</button>
+
+                 </form>
+            </div>
+
+            <div class="col-md-9">
+                <h4 id="title" class="text-center">My To Do List</h4>
+                <div class="card">
+                    <h5 class="card-header">Due Day</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Event</h5>
+                        <p class="card-text">Note about the event</p>
+                        <a href="#" class="btn btn-primary">Completed</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
