@@ -17,3 +17,16 @@ body {
 .wishlist{
 text-align: center;
 }
+
+.destination_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 40px
+}
+
+.button_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
