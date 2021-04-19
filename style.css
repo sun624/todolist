@@ -2,6 +2,18 @@ body {
     padding: 20px
 }
 
+.jumbotron{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .submit_btn{
     width: 100%;
+}
+
+.wishlist{
+text-align: center;
 }
