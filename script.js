@@ -20,13 +20,13 @@ async function createDestination(event) {
   //get user info
   const name = event.target["destination_name"].value;
   const location = event.target["destination_location"].value;
-  const photo = await getPhotoUrl(event.target["destination_name"].value);
+  var photo = await getPhotoUrl(event.target["destination_name"].value);
   const description = event.target["description"].value;
 
   //reset user input
-  event.target["destination_name"].value="";
-  event.target["destination_location"].value="";
-  event.target["description"].value="";
+  event.target["destination_name"].value = "";
+  event.target["destination_location"].value = "";
+  event.target["description"].value = "";
 
   //create a card
   const newCard = document.createElement("div");
@@ -36,12 +36,10 @@ async function createDestination(event) {
   document.querySelector(".destination_container").appendChild(newCard);
 
   //create the image
-  const image = document.createElement("img");
+  var image = document.createElement("img");
   image.setAttribute("class", "card-img-top");
-  const fallBackUrl =
-    "https://cavchronicle.org/wp-content/uploads/2018/03/top-travel-destination-for-visas-900x504.jpg";
-  const url = photo.length === 0 ? fallBackUrl : photo;
-  image.setAttribute("src", url);
+  image.setAttribute("src", photo);
+
   newCard.appendChild(image);
 
   //create card body
@@ -88,13 +86,19 @@ async function createDestination(event) {
   buttonContainer.appendChild(removeButton);
 }
 
-async function getPhotoUrl(name){
+async function getPhotoUrl(name) {
   const API = `https://api.unsplash.com/search/photos?client_id=xk00MhkV4FGkpuQliJKQ-19j4skX4JxXox-d1mndQb0&page=1&query=${name}`;
+
+  const fallBackUrl =
+    "https://cavchronicle.org/wp-content/uploads/2018/03/top-travel-destination-for-visas-900x504.jpg";
 
   try {
     const res = await fetch(API);
     const result = await res.json();
-    return result.results[0].urls.thumb;
+    //if no results returned, show default photo, otherwise show the first photo from results 
+    return result.results.length === 0
+      ? fallBackUrl
+      : result.results[0].urls.thumb;
   } catch (error) {
     console.log(error);
   }
@@ -115,7 +119,10 @@ async function editDestinaton(event) {
   }
 
   if (updatedUrl.length > 0) {
-    event.target.parentNode.parentNode.parentNode.children[0].setAttribute("src",updatedUrl);
+    event.target.parentNode.parentNode.parentNode.children[0].setAttribute(
+      "src",
+      updatedUrl
+    );
   }
 
   if (updatedDescription.length > 0) {
