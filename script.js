@@ -95,10 +95,9 @@ async function getPhotoUrl(name) {
   try {
     const res = await fetch(API);
     const result = await res.json();
+    
     //if no results returned, show default photo, otherwise show the first photo from results 
-    return result.results.length === 0
-      ? fallBackUrl
-      : result.results[0].urls.thumb;
+    return result.total === 0 ? fallBackUrl: result.results[0].urls.thumb;
   } catch (error) {
     console.log(error);
   }
