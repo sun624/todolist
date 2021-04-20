@@ -20,7 +20,7 @@ async function createDestination(event) {
   //get user info
   const name = event.target["destination_name"].value;
   const location = event.target["destination_location"].value;
-  var photo = await getPhotoUrl(event.target["destination_name"].value);
+  var photo = await getPhotoUrl(name);
   const description = event.target["description"].value;
 
   //reset user input
@@ -117,12 +117,10 @@ async function editDestinaton(event) {
     event.target.parentNode.parentNode.children[1].innerHTML = uopdatedLocation;
   }
 
-  if (updatedUrl.length > 0) {
     event.target.parentNode.parentNode.parentNode.children[0].setAttribute(
       "src",
       updatedUrl
     );
-  }
 
   if (updatedDescription.length > 0) {
     event.target.parentNode.parentNode.children[2].innerHTML = updatedDescription;
