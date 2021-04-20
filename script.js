@@ -14,13 +14,13 @@ document
     </div>
  */
 
-function createDestination(event) {
+async function createDestination(event) {
   event.preventDefault();
 
   //get user info
   var name = event.target["destination_name"].value;
   var location = event.target["destination_location"].value;
-  var photo = event.target["url"].value;
+  var photo = await getPhotoUrl(event.target["destination_name"].value);
   var description = event.target["description"].value;
 
   //create a card
@@ -83,10 +83,22 @@ function createDestination(event) {
   buttonContainer.appendChild(removeButton);
 }
 
-function editDestinaton(event) {
+async function getPhotoUrl(name){
+  const API = `https://api.unsplash.com/search/photos?client_id=xk00MhkV4FGkpuQliJKQ-19j4skX4JxXox-d1mndQb0&page=1&query=${name}`;
+
+  try {
+    const res = await fetch(API);
+    const result = await res.json();
+    return result.results[0].urls.thumb;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function editDestinaton(event) {
   var updatedName = prompt("Where is you new place?");
   var uopdatedLocation = prompt("where is the next Stop?");
-  var updatedUrl = prompt("You new desitnation photo url");
+  var updatedUrl = await getPhotoUrl(updatedName);
   var updatedDescription = prompt("Your new description for the next trip");
 
   if (updatedName.length > 0) {
